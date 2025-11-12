@@ -1,0 +1,41 @@
+def dfs(adj, start, visited):
+    visited[start] = True
+    print(start, end=" ")
+    for v, connected in enumerate(adj[start]):
+        if connected and not visited[v]:
+            dfs(adj, v, visited)
+
+def build_adj_matrix(n):
+    adj = [[0]*n for _ in range(n)]
+    print("Enter edges (u v). Type -1 -1 to stop:")
+    while True:
+        u, v = map(int, input("Edge: ").split())
+        if u == -1 and v == -1:
+            break
+        if 0 <= u < n and 0 <= v < n:
+            adj[u][v] = 1
+            adj[v][u] = 1  # for undirected graph
+        else:
+            print("Invalid node index")
+    return adj
+
+def menu():
+    n = int(input("Enter number of nodes: "))
+    adj = build_adj_matrix(n)
+    while True:
+        print("\n1. Show Adjacency Matrix\n2. Perform DFS\n3. Exit")
+        ch = input("Enter choice: ")
+        if ch == "1":
+            for row in adj:
+                print(row)
+        elif ch == "2":
+            s = int(input("Enter starting node index: "))
+            visited = [False]*n
+            print("DFS traversal order:")
+            dfs(adj, s, visited)
+            print()
+        else:
+            break
+
+if __name__ == "__main__":
+    menu()
