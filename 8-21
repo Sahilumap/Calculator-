@@ -1,0 +1,63 @@
+# --- Create an empty hash table with 10 slots ---
+hash_table = [[] for _ in range(10)]
+
+# --- Hash function (Division Method) ---
+def hash_function(key):
+    return key % 10  # remainder determines the index
+
+# --- Insert a key-value pair ---
+def insert(key, value):
+    index = hash_function(key)
+    for pair in hash_table[index]:
+        if pair[0] == key:
+            pair[1] = value  # update if key exists
+            print(f"Updated key {key} with value '{value}'")
+            return
+    hash_table[index].append([key, value])
+    print(f"Inserted key {key} with value '{value}' at index {index}")
+
+# --- Delete a key-value pair ---
+def delete(key):
+    index = hash_function(key)
+    for pair in hash_table[index]:
+        if pair[0] == key:
+            hash_table[index].remove(pair)
+            print(f"Deleted key {key} from index {index}")
+            return
+    print(f"Key {key} not found!")
+
+# --- Display the hash table ---
+def display():
+    print("\nCurrent Hash Table:")
+    for i in range(len(hash_table)):
+        print(f"Index {i}: {hash_table[i]}")
+    print()  # for spacing
+
+# --- Menu Loop ---
+while True:
+    print("===== HASH TABLE MENU =====")
+    print("1. Insert Key-Value Pair")
+    print("2. Delete Key")
+    print("3. Display Hash Table")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == "1":
+        key = int(input("Enter key (number): "))
+        value = input("Enter value (text): ")
+        insert(key, value)
+
+    elif choice == "2":
+        key = int(input("Enter key to delete: "))
+        delete(key)
+
+    elif choice == "3":
+        display()
+
+    elif choice == "4":
+        print("Exiting program. Goodbye!")
+        break
+
+    else:
+        print("Invalid choice! Please enter a number from 1 to 4.\n")
