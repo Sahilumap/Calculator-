@@ -1,0 +1,16 @@
+num_members=int(input("Enter number of library members : "))
+
+borrowed_books=[]
+
+for i in range(num_members):
+    count=int(input(f"enter number of books borrowed by member {i+1} :"))
+    borrowed_books.append(count)
+    
+total_books=sum(borrowed_books)
+avg=(total_books/num_members)
+no_books_members=borrowed_books.count(0)
+
+print("\n----- library borrow records -----\n")
+print("borrowing records of members : ",borrowed_books)
+print("Average books borrowed : ",avg)
+print("number of members who borowed no books :",no_books_members)
