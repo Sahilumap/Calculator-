@@ -1,0 +1,23 @@
+num_books=int(input("enter number of books in the library : "))
+borrowed_records={}
+
+for i in range(num_books):
+    name=input(f"enter name of book {i+1} : ")
+    count=int(input(f"enter number of times {name} was borrowed :"))
+    borrowed_records[name]=count
+    
+max_book=max(borrowed_records,key=borrowed_records.get)
+min_book=min(borrowed_records,key=borrowed_records.get)
+
+from statistics import mode
+mode_value=mode(borrowed_records.values())
+books_with_mode = [book for book, count in borrowed_records.items() if count == mode_value]
+
+
+print("\n---- Library borrow records-----\n")
+print("All records ",borrowed_records)
+print(f"{max_book}  book is the borrowed highest time with borrrowing count {borrowed_records[max_book]}  ")
+print(f"{min_book}  book is the borrowed lowest time with borrrowing count {borrowed_records[min_book]}  ")
+print(f"The book(s) with the most frequent borrowing count ({mode_value}) are: {books_with_mode}")
+
+# print("the book with most frequent borrowing is ",mode_value)
