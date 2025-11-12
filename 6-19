@@ -1,0 +1,56 @@
+queue=[]
+
+def add_event(event):
+    queue.append(event)
+    print(f"{event} event added in the queue !")
+    
+def cancel_event(event):
+        
+    if event in queue:
+        queue.remove(event)
+        print(f"{event} event cancelled successfully !")
+    else:
+        print("no event found to cancel ")
+    
+def display_events():
+    if queue:
+        print(queue)
+    else:
+        print("no events found to display")
+    
+def process_event():
+    if queue:
+        queue.pop(0)
+        print(" event processed successfully !")
+    else :
+        print("event not found to process !")
+        
+print("\n-------events management--------\n")       
+while True:
+        
+
+    
+    print("1. add event")
+    print("2. cancel event")
+    print("3. display event")
+    print("4. process event")
+    print("5. exit")
+
+    choice=int(input("Enter your choice : "))
+
+    if choice==1:
+        event=input("Enter event name to add in the queue : ")
+        add_event(event)
+    elif choice==2:
+        event=input("Enter event name to cancel the event : ")
+        cancel_event(event)
+    elif choice==3:
+        display_events()
+    elif choice==4:
+        process_event()
+    elif choice==5:
+        print("Thank you !!")
+        break
+    else:
+        print("ERROR !! enter valid choice ")
+        
