@@ -1,0 +1,32 @@
+ID_list=[100,800,200,300,400,500,600]
+ID_list.sort()
+print(ID_list)
+target=int(input("enter customer id to find : "))
+
+low=0
+high=len(ID_list)-1
+found=False
+
+while low<=high:
+    mid=(low+high)//2
+    if ID_list[mid]==target:
+        print("account id found !")
+        found=True
+        break
+    elif target<ID_list[mid]:
+        high=mid-1
+        
+    else:
+        low=mid+1
+        
+if not found:
+    print("account id not found")
+        
+        
+    
+    
+        
+        
+
+        
+        
