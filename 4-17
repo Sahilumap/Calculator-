@@ -1,0 +1,31 @@
+id_list=[100,501,200,201,301,300]
+tid_list = [100, 200, 300, 400, 500]
+
+target=int(input("Enter customer ID to find : "))
+
+
+
+if target in id_list:
+    print("account ID found ")
+    
+else:
+    print("account ID not found")    
+    
+# another program
+
+
+
+# target = int(input("Enter customer ID to find: "))
+
+
+# found = False
+# for id in id_list:
+#     if id == target:
+#         found = True
+#         break
+
+
+# if found:
+#     print("Customer ID found!")
+# else:
+#     print("Customer ID not found.")
