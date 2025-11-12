@@ -1,0 +1,68 @@
+#Simple Interactive Undo/Redo Text Editor using Stacks
+
+undo_stack = []   # Stores previous document states
+redo_stack = []   # Stores undone document states
+document = ""     # Current document text
+
+
+def make_change():
+    """Make a new change to the document."""
+    global document
+    new_text = input("Enter new document text: ")
+    undo_stack.append(document)     # Save current state before change
+    document = new_text             # Update the document
+    redo_stack.clear()              # Clear redo history after a new change
+    print("\nChange made successfully!")
+
+
+def undo_action():
+    """Undo the most recent change."""
+    global document
+    if undo_stack:
+        redo_stack.append(document)  # Save current state for redo
+        document = undo_stack.pop()  # Restore last saved state
+        print("\nUndo performed.")
+    else:
+        print("\nNothing to undo.")
+
+
+def redo_action():
+    """Redo the most recently undone action."""
+    global document
+    if redo_stack:
+        undo_stack.append(document)  # Save current state for undo
+        document = redo_stack.pop()  # Reapply undone change
+        print("Redo performed.")
+    else:
+        print(" Nothing to redo.")
+
+
+def display_document():
+    """Show the current document state."""
+    print(f"\n Current Document: {document}\n")
+
+
+# --- Main Menu Loop ---
+while True:
+    print("\n===== TEXT EDITOR MENU =====")
+    print("1. Make a Change")
+    print("2. Undo")
+    print("3. Redo")
+    print("4. Display Document")
+    print("5. Exit")
+
+    choice = input("\nEnter your choice (1-5): ")
+
+    if choice == "1":
+        make_change()
+    elif choice == "2":
+        undo_action()
+    elif choice == "3":
+        redo_action()
+    elif choice == "4":
+        display_document()
+    elif choice == "5":
+        print("\nExiting program. Goodbye!")
+        break
+    else:
+        print("\nInvalid choice. Please try again.")
